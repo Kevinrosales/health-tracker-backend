@@ -1,5 +1,7 @@
 package com.kevinrosales.healthtrackerbackend;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,5 +29,4 @@ public class Exercise {
     public String toString() {
         return "Exercise: " + title + ", Quantity: " + quantity + ", Description: " + description + ", Time Stamp: " + timeStamp;
     }
-
 }
