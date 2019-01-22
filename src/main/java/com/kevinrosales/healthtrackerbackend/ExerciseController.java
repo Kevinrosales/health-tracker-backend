@@ -6,16 +6,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import java.util.Date;
 
 @RestController
 public class ExerciseController {
     @Autowired
     private ExerciseRepository exerciseRepo;
 
-//    @PostMapping(value = "/exercises")
-//    public Exercise addExercise(@RequestParam String title, @RequestParam String quantity, @RequestParam String description) {
-//
-//    }
+    @PostMapping(value = "/exercises")
+    public void postExercise(
+            @RequestParam String title,
+            @RequestParam String quantity,
+            @RequestParam String description) {
+
+        Exercise newExercise = new Exercise(title, quantity, description, new Date().toString());
+        exerciseRepo.save(newExercise);
+    }
 
     @GetMapping(value = "/exercises")
     public String getExercises() {
@@ -23,7 +29,5 @@ public class ExerciseController {
         String JsonExercise = gson.toJson(exerciseRepo.findAll());
         return JsonExercise;
     }
-
-
-
+    
 }
